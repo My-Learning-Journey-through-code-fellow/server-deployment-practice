@@ -17,7 +17,7 @@ app.use(cors());
 // app.use();
 
 app.get('/', (req, res, next) => {
-  res.status(200).send('Hi World');
+  res.status(200).send('Hi World!');
 });
 
 
