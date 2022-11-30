@@ -22,6 +22,13 @@
 
 // app.listen(PORT, () => console.log('listening on port: ', PORT));
 
-const server = require('./server.js');
 
-server.start();
+// one method below
+// const server = require('./server.js');
+
+// server.start();
+
+// another method
+const { start } = require('./server');
+
+start();
