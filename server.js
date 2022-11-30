@@ -4,9 +4,9 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const PORT = process.env.PORT || 3002;
-const logger = require('./middleware/logger');
-const notFound = require('./handlers/404');
-const errorHandler = require('./handlers/500');
+const logger = require('./src/middleware/logger');
+const notFound = require('./src/handlers/404');
+const errorHandler = require('./src/handlers/500');
 
 //This is a singleton (which is a single instance)
 const app = express();
@@ -23,6 +23,8 @@ app.get('/', logger, (req, res, next) => {
 
 app.get('/bad', (req, res, next) => {
   next('We have a problem');
+  // express is unopinionated,I could throw an error in a very js sort of way , instead of express sort of way.
+  // throw new Error('We have a problem');
 });
 
 app.use('*', notFound);
