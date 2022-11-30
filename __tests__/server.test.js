@@ -1,6 +1,5 @@
 const { app } = require('../server');
 const supertest = require('supertest');
-const { exportAllDeclaration } = require('@babel/types');
 const request = supertest(app);
 
 describe('APIServer', () => {
@@ -10,5 +9,16 @@ describe('APIServer', () => {
     expect(response.status).toBe(200);
     expect(response.text).toBeTruthy();
     expect(response.text).toEqual('Hi World!');
+  });
+
+  it('handles invalid requests', async () => {
+    const response = await request.get('/foo');
+    expect(response.status).toEqual(400);
+  });
+
+  it('handles errors', async () => {
+    const response = await request.get('/bad');
+    expect(response.status).toEqual(500);
+    expect(response.body.route).toEqual('/bad');
   });
 });
