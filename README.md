@@ -7,7 +7,9 @@
  *NOTE: This will break deployments to other hosting services such as Netlify, Vercel, or AWS Amplify, so if you later wish to deploy there, remove this property completely*
 
      {
-       "homepage": "https://yourname.github.io/repository-name"
+        "Repo": "https://github.com/TraceDugar/server-deployment-practice"
+        "Render.com deployment Dev branch" https://server-deployment-practice-dev-qa2k.onrender.com/   - Dev
+        "Render.com deployment Dev branch" git ahttps://server-deployment-prod.onrender.com  - Prod
      }
 
 ## Node / Express Applications
