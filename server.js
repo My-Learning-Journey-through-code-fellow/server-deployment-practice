@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const PORT = process.env.PORT || 3002;
 const logger = require('./src/middleware/logger');
+const validator = require('./src/middleware/validator')
 const notFound = require('./src/handlers/404');
 const errorHandler = require('./src/handlers/500');
 
@@ -21,6 +22,14 @@ app.get('/', logger, (req, res, next) => {
   res.status(200).send('Hi World!');
 });
 
+app.get('/helloQuery', validator, (req, res, next) => {
+  res.status(200).send(`Hello ${req.query.name}`);
+});
+
+app.get('/helloPath/:individual', (req, res, next) => {
+  res.status(200).send(`Hello ${req.params.individual}`);
+});
+
 app.get('/bad', (req, res, next) => {
   next('We have a problem');
   // express is unopinionated,I could throw an error in a very js sort of way , instead of express sort of way.
@@ -30,8 +39,8 @@ app.get('/bad', (req, res, next) => {
 app.use('*', notFound);
 app.use(errorHandler);
 
-function start(){
+function start() {
   app.listen(PORT, () => console.log('listening on port: ', PORT));
 }
 
-module.exports =  { start, app };
+module.exports = { start, app };

@@ -11,6 +11,7 @@ describe('Validator middleware', () => {
   it('validates query as expected', () => {
     validator(req, res, next);
     expect(next).toHaveBeenCalledWith();
+    expect(next).not.toHaveBeenCalledWith('This should fail');
   });
 
   it('fails appropriatesly if no query name property', () => {
